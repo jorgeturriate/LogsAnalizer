@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lector de archivos de Dispatch</title>
+    </head>
+    <body>
+        <h1>Analizador de Logs</h1>
+        <p>
+            Bienvenido al analizador de logs de Dispatch 
+        </p>
+        <form method="POST" enctype="multipart/form-data" action="/dispatch">
+            <label for="fechaInicio">Seleccione la fecha de inicio del reporte</label>
+            <input type="date" name="fechaInicio" min="2019-11-01" max="2022-12-31"/>
+            <label for="horaInicio">Seleccione la hora de inicio</label>
+            <input type="time" name="horaInicio" step="1" />
+
+            <label for="fechaFin">Seleccione la fecha de fin del reporte</label>
+            <input type="date" name="fechaFin" min="2019-11-01" max="2022-12-31"/>
+            <label for="horaFin">Seleccione la hora de fin</label>
+            <input type="time" name="horaFin" step="1" />
+
+            <select name="mina">
+                <option value="cve">Cerro Verde</option>
+                <option value="bambas">Las Bambas</option>
+            </select>
+
+            <label for="starter">Ingrese el log del Starter Service</label>
+            <input type="file" name="starter"/>
+            <label for="dispatch">Ingrese el log del Dispatch Service</label>
+            <input type="file" name="dispatch"/>
+
+            <input type="submit" value="Obtener el Reporte"/>
+        </form>
+    </body>
+</html>
