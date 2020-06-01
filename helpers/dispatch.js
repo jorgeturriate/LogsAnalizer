@@ -78,7 +78,9 @@ exports.generacionReporte= async (dispatchlog, starterlog, fechaInicio, fechaFin
 }
 
 
-const leerLogs= async (streamer, periodo)=>{
+const leerLogs= async (filePath, periodo)=>{
+
+    const streamer= fs.createReadStream(filePath);
 
     
     const rd= readline.createInterface({
@@ -122,10 +124,10 @@ const leerLogs= async (streamer, periodo)=>{
     
             }
 
-            if(line.toString().includes('Fin')){
+            /*if(line.toString().includes('Fin')){
                 console.log('Llegaste al fin del documento');
                 rd.close();
-            }
+            }*/
         })
 
         //events.once(rd, 'close');
@@ -138,7 +140,10 @@ const leerLogs= async (streamer, periodo)=>{
 }
 
 
-const leerLogsFiltrandoRepetidos= async (streamer, periodo, arrComparar)=>{
+const leerLogsFiltrandoRepetidos= async (filePath, periodo, arrComparar)=>{
+
+    const streamer= fs.createReadStream(filePath);
+
     const arrCases1= [];
     const rd= readline.createInterface({
         //input: readerStreamStarter,
