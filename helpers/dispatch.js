@@ -1,6 +1,5 @@
 const fs = require('fs');
 const readline = require('readline');
-const events= require('events');
 
 /*
     LOGICA PARA CAPTURAR LOS ARGUMENTOS PASADOS AL SCRIPT, 
@@ -9,15 +8,15 @@ const events= require('events');
     Cuando es cualquier otro caso se analizaran todos los casos del log, pero ya no habra ningun porcentaje en el CSV generado
 */
 
-exports.generacionReporte= async (dispatchlog, starterlog, fechaInicio, fechaFin, horaInicio, horaFin)=>{
+exports.generacionReporte= async (dispatchlog, starterlog, fechaInicio, fechaFin, horaInicio, horaFin, mina)=>{
 
-    //const readerStreamStarter= fs.createReadStream('starter.log');
-    //const readerStreamDispatch= fs.createReadStream('dispatch.log');
-    const writeStream= fs.createWriteStream('dispatch.csv');
+    //Path de ubicacion del reporte
+    const pathReporte= 'uploads/dispatch'+mina+'.csv';
+
+    const writeStream= fs.createWriteStream(pathReporte);
     let arrCases;
     let arrCases1;
     let args;
-    var segundosTotales= 0;
 
     //Validacion de datos de entrada
     if(!fechaInicio || !fechaFin){
@@ -46,35 +45,19 @@ exports.generacionReporte= async (dispatchlog, starterlog, fechaInicio, fechaFin
     return new Date(a[0]+' '+a[1]) - new Date(b[0]+' '+b[1]);
     })
 
-    writeStream.write(procesarArray(arrCases));
+    //Procesamos el array para obtener las caidas
+    const {arrayProcesado, segundosTotales}= procesarArray(arrCases);
+
+    writeStream.write(arrayProcesado);
     if(args){
         const rangoFecha= (args[1]-args[0])/1000;
         const porcentajeTotal= ((segundosTotales)/rangoFecha)*100;
         writeStream.write('\nSegundos Totales,'+segundosTotales+',Rango de fecha en segundos,'+rangoFecha+',Porcentaje Total,'+porcentajeTotal);
-        writeStream.write('\n\nReporte realizado del '+arg[0]+' al '+arg[1]);
+        writeStream.write('\n\nReporte realizado del '+args[0]+' al '+args[1]);
 
     }
     writeStream.end();
     console.log('Script terminado');
-
-    /*await dispatchlog.on('end', ()=>{ //readerStreamDispatch.on
-        arrCases= [...arrCases, ...arrCases1];
-        arrCases.sort((a,b)=>{
-        return new Date(a[0]+' '+a[1]) - new Date(b[0]+' '+b[1]);
-        })
-        //console.log(arrCases);
-        writeStream.write(procesarArray(arrCases));
-        if(args){
-            const rangoFecha= (args[1]-args[0])/1000;
-            const porcentajeTotal= ((segundosTotales)/rangoFecha)*100;
-            writeStream.write('\nSegundos Totales,'+segundosTotales+',Rango de fecha en segundos,'+rangoFecha+',Porcentaje Total,'+porcentajeTotal);
-            writeStream.write('\n\nReporte realizado del '+arg[0]+' al '+arg[1]);
-
-        }
-        writeStream.end();
-        //console.log(procesarArray(arrCases));
-        console.log('Script terminado');
-    })*/
 }
 
 
@@ -152,6 +135,7 @@ const leerLogsFiltrandoRepetidos= async (filePath, periodo, arrComparar)=>{
     })
 
     return new Promise(resolve=>{
+        console.log('Dentro de la segunda promesa');
 
         streamer.on('error', _ => resolve(null));
 
@@ -221,6 +205,7 @@ const leerLogsFiltrandoRepetidos= async (filePath, periodo, arrComparar)=>{
 
 const procesarArray= (arr)=>{
     const newArr= [];
+    let segundosTotales=0;
     newArr.push(['Fecha Inicio Caida', 'Fecha Fin Caida', 'Hora Inicio Caida','Hora Fin Caida', 'Diferencia', 'Diferencia en segundos'].join(','));
     //let segundosTotales=0;
     for(let i in arr){
@@ -248,5 +233,10 @@ const procesarArray= (arr)=>{
         }
     }
 
-    return newArr.join('\n');
+    const jsonRespuesta= {
+        arrayProcesado: newArr.join('\n'),
+        segundosTotales: segundosTotales
+    }
+
+    return jsonRespuesta;
 }
