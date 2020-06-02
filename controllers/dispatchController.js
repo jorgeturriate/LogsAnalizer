@@ -16,8 +16,7 @@ exports.postDispatchPage= async (req,res,next)=>{
 
     await helpers.generacionReporte(dispatchPath, starterPath, fechaInicio,fechaFin, horaInicio, horaFin, mina);
 
-    const reportPath= '/uploads/dispatch'+mina+'.csv';
-    console.log(reportPath.split('/')[2]);
+    const reportPath= 'uploads/dispatch'+mina+'.csv';
 
     fs.exists(reportPath,(exists)=>{
         if(!exists){
@@ -25,7 +24,7 @@ exports.postDispatchPage= async (req,res,next)=>{
         }
 
         res.setHeader('Content-Type','text/csv');
-        res.setHeader('Content-Disposition','attachment; filename='+reportPath.split('/')[2]);
+        res.setHeader('Content-Disposition','attachment; filename='+reportPath.split('/')[1]);
 
         fs.createReadStream(reportPath).pipe(res);
     })

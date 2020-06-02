@@ -34,7 +34,7 @@ exports.generacionReporte= async (dispatchlog, starterlog, fechaInicio, fechaFin
     //Leemos el log starter y hacemos el filtrado para obtener en el array las caidas y running
     arrCases= await leerLogs(starterlog, args);
 
-    console.log(arrCases);
+    //console.log(arrCases);
 
     //Leemos el log dispatch y hacemos el filtrado para obtener en el array las caidas y running a la vez de eliminar los repetidos
     arrCases1= await leerLogsFiltrandoRepetidos(dispatchlog, args, arrCases);

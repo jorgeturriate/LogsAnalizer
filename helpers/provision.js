@@ -1,6 +1,10 @@
 const fs = require('fs');
 const readline = require('readline');
 
+exports.generacionReporte= async (provisionLog, fechaInicio, fechaFin, horaInicio, horaFin, mina)=>{
+    
+}
+
 const readerStream= fs.createReadStream('provision.log');
 const writeStream= fs.createWriteStream('provision.csv');
 
