@@ -54,8 +54,19 @@ exports.generacionReporte= async (dispatchlog, starterlog, fechaInicio, fechaFin
         const porcentajeTotal= ((segundosTotales)/rangoFecha)*100;
         writeStream.write('\nSegundos Totales,'+segundosTotales+',Rango de fecha en segundos,'+rangoFecha+',Porcentaje Total,'+porcentajeTotal);
         writeStream.write('\n\nReporte realizado del '+args[0]+' al '+args[1]);
-
     }
+
+    //Borro los logs
+    fs.unlink(starterlog,(err)=>{
+        if (err) throw(err);
+        console.log('Borrado el log del starter');
+    })
+
+    fs.unlink(dispatchlog,(err)=>{
+        if (err) throw(err);
+        console.log('Borrado el log de Dispatch');
+    })
+    
     writeStream.end();
     console.log('Script terminado');
 }

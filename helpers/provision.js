@@ -37,6 +37,13 @@ exports.generacionReporte= async (provisionlog, fechaInicio, fechaFin, horaInici
         writeStream.write('\n\nReporte realizado del '+args[0]+' al '+args[1]);
 
     }
+
+    //Borro los logs
+    fs.unlink(provisionlog,(err)=>{
+        if (err) throw(err);
+        console.log('Borrado el log de provision');
+    })
+
     writeStream.end();
     console.log('Script terminado');
 

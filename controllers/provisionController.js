@@ -17,8 +17,8 @@ exports.postProvisionPage= async (req,res,next)=>{
 
     const reportPath= 'uploads/provision'+mina+'.csv';
 
-    fs.exists(reportPath,(exists)=>{
-        if(!exists){
+    fs.stat(reportPath,(err, stats)=>{
+        if(err){
             return res.status(500).send('<h1>Ocurrio un error</h1>');
         }
 
@@ -26,6 +26,10 @@ exports.postProvisionPage= async (req,res,next)=>{
         res.setHeader('Content-Disposition','attachment; filename='+reportPath.split('/')[1]);
 
         fs.createReadStream(reportPath).pipe(res);
+
+        fs.unlink(reportPath,(err)=>{
+            if(err) throw(err)
+        })
     })
 
 }
