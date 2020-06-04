@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Lector de archivos de Provision</title>
+        <title>Provision</title>
+        <link rel="stylesheet" href="/css/analizador.css"/>
+        <link rel="icon" type="image/png" href="/images/modular.png"/>
     </head>
     <body>
-        <h1>Analizador de Logs</h1>
-        <p>
-            Bienvenido al analizador de logs de Provision
-        </p>
-        <form method="POST" enctype="multipart/form-data" action="/provision">
-            <label for="fechaInicio">Seleccione la fecha de inicio del reporte</label>
-            <input type="date" name="fechaInicio" min="2019-11-01" max="2022-12-31"/>
-            <label for="horaInicio">Seleccione la hora de inicio</label>
-            <input type="time" name="horaInicio" step="1" />
-
-            <label for="fechaFin">Seleccione la fecha de fin del reporte</label>
-            <input type="date" name="fechaFin" min="2019-11-01" max="2022-12-31"/>
-            <label for="horaFin">Seleccione la hora de fin</label>
-            <input type="time" name="horaFin" step="1" />
-
-            <select name="mina">
-                <option value="CVE">Cerro Verde</option>
-                <option value="Bambas">Las Bambas</option>
-            </select>
-
-            <label for="provisionr">Ingrese el log Intellimine Provision</label>
-            <input type="file" name="provision"/>
-
-            <input type="submit" value="Obtener el Reporte"/>
-        </form>
+        <div class="container">
+            <h1>Analizador de Logs de Provision</h1>
+            <p>
+                Bienvenido al analizador de logs de Provision, por favor complete con los datos necesarios para realizar el reporte
+            </p>
+            <form method="POST" enctype="multipart/form-data" action="/provision">
+                <div class="formElement">
+                    <label for="fechaInicio">Seleccione la fecha de inicio del reporte</label>
+                    <input type="date" name="fechaInicio" min="2019-11-01" max="2022-12-31"/>  
+                </div>
+                <div class="formElement">
+                    <label for="horaInicio">Seleccione la hora de inicio</label>
+                    <input type="time" name="horaInicio" step="1" />
+                </div>
+                <div class="formElement">
+                    <label for="fechaFin">Seleccione la fecha de fin del reporte</label>
+                    <input type="date" name="fechaFin" min="2019-11-01" max="2022-12-31"/>
+                </div>
+                <div class="formElement">
+                    <label for="horaFin">Seleccione la hora de fin</label>
+                    <input type="time" name="horaFin" step="1" />
+                </div>
+                <div class="formElement">
+                    <label for="mina">Seleccione la mina</label>
+                    <select name="mina">
+                        <option value="CVE">Cerro Verde</option>
+                        <option value="Bambas">Las Bambas</option>
+                    </select>
+                </div>
+                <div class="formElement">
+                    <label for="provisionr">Ingrese el log Intellimine Provision</label>
+                    <input type="file" name="provision"/>
+                </div>
+                <button type="submit" class="button">Obtener Reporte</button>
+            </form>
+            <a href="/"><div class="button">Volver al inicio</div></a>
+        </div>
     </body>
 </html>

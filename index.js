@@ -25,9 +25,12 @@ app.get('/', (req,res,next)=>{
     return res.render('index.html');
 });
 
+app.use((error,req,res,next)=>{
+    res.status(500).render('error.html');
+})
 
 app.use((req,res,next)=>{
-    res.send('<p>La pagina que ha buscado no existe</p>');
+    res.render('notFound.html');
 })
 
 
