@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TiempoMaximo</title>
+        <link rel="stylesheet" href="/css/analizador.css"/>
+        <link rel="icon" type="image/png" href="/images/modular.png"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Reportar Tiempo Maximo de caida mensual</h1>
+            <p>
+                Bienvenido, por favor registre el tiempo de caida maximo
+            </p>
+            <form method="POST" enctype="application/x-www-form-urlencoded" action="/provision">
+                <div class="formElement">
+                    <label for="duracionCaida">Escriba la cantidad de horas maxima que ha registrado</label>
+                    <input type="number" name="duracionCaida" min="0" max="9999999"/>
+                </div>
+                <div>
+                    <label for="servicio">Elija el servicio que esta registrando</label>
+                    <select name="servicio">
+                        <option value="dispatch">Dispatch</option>
+                        <option value="provision">Provision</option>
+                    </select>
+                </div>
+                <div class="formElement">
+                    <label for="mina">Seleccione la mina</label>
+                    <select name="mina">
+                        <option value="CVE">Cerro Verde</option>
+                        <option value="Bambas">Las Bambas</option>
+                    </select>
+                </div>
+                <button type="submit" class="button">Obtener Reporte</button>
+            </form>
+            <a href="/"><div class="button">Volver al inicio</div></a>
+        </div>
+    </body>
+</html>
