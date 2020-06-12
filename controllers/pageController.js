@@ -10,5 +10,4 @@ exports.postMaxHourCounter= (req,res,next)=>{
     const mina= req.body.mina;
     const servicio= req.body.servicio;
 
-    
 }
