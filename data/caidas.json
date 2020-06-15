@@ -1,0 +1,10 @@
+{
+    "dispatch": {
+        "CVE": {"duration": 0, "updated": "0"},
+        "Bambas": {"duration":0, "updated":"0"}
+    },
+    "provision": {
+        "CVE": {"duration":0, "updated":"0"},
+        "Bambas": {"duration":0, "updated":"0"}
+    }
+}

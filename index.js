@@ -13,6 +13,7 @@ const app= express();
 //Imports
 const dispatchRoute= require('./routes/dispatchRoute');
 const provisionRoute= require('./routes/provisionRoute');
+const pageRoute= require('./routes/pageRoute');
 
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -24,6 +25,7 @@ app.set('view engine', 'html');
 
 app.use(dispatchRoute);
 app.use(provisionRoute);
+app.use(pageRoute);
 
 app.get('/', (req,res,next)=>{
     return res.render('index.html');

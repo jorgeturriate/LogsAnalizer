@@ -11,12 +11,12 @@
             <p>
                 Bienvenido, por favor registre el tiempo de caida maximo
             </p>
-            <form method="POST" enctype="application/x-www-form-urlencoded" action="/provision">
+            <form method="POST" enctype="application/x-www-form-urlencoded" action="/tiempomaximo">
                 <div class="formElement">
                     <label for="duracionCaida">Escriba la cantidad de horas maxima que ha registrado</label>
                     <input type="number" name="duracionCaida" min="0" max="9999999"/>
                 </div>
-                <div>
+                <div class="formElement">
                     <label for="servicio">Elija el servicio que esta registrando</label>
                     <select name="servicio">
                         <option value="dispatch">Dispatch</option>
@@ -30,7 +30,7 @@
                         <option value="Bambas">Las Bambas</option>
                     </select>
                 </div>
-                <button type="submit" class="button">Obtener Reporte</button>
+                <button type="submit" class="button">Registrar valor maximo</button>
             </form>
             <a href="/"><div class="button">Volver al inicio</div></a>
         </div>
