@@ -99,6 +99,7 @@ exports.getDispatch5Page= (req,res,next)=>{
 
 exports.postDispatch5Page= async (req,res,next)=>{
     try{
+        
         const fechaInicio= req.body.fechaInicio;
         const fechaFin= req.body.fechaFin;
         const mina= req.body.mina;
@@ -114,7 +115,7 @@ exports.postDispatch5Page= async (req,res,next)=>{
             if(err){
                 return res.status(500).send('<h1>Ocurrio un error</h1>');
             }
-    
+
             res.setHeader('Content-Type','text/csv');
             res.setHeader('Content-Disposition','attachment; filename='+reportPath.split('/')[1]);
     
