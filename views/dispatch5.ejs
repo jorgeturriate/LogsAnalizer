@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dispatch5</title>
+        <link rel="stylesheet" href="css/analizador.css"/>
+        <link rel="icon" type="image/png" href="images/modular.png"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Analizador de Logs de Dispatch 5</h1>
+            <p>
+                Bienvenido al analizador de logs de Dispatch 5, por favor complete con los datos necesarios para realizar el reporte
+            </p>
+            <div id="sugerencia">
+                Ubique las transacciones de la siguiente manera:
+                <ol>
+                    <li>Dirijase a la carpeta <b>mms</b> </li>
+                    <li>Luego coloque el siguiente comando: <b>cd opns</b> </li>
+                    <li>Guarde el archivo de transacciones con el comando: 
+                        <div class="language">
+                            <code>
+                                find sh<%= acrotrans %>*.transact | xargs grep -v "07\:00\|19\:00" | grep -B 10 "niciar DISPATCH" > /home/mms/disponibilidad<%= acrotrans %>.txt
+                            </code>
+                        </div>
+                    </li>
+                    <li>Descargue el archivo de transacciones con WinSCP</li>
+                </ol>  
+            </div>
+            <form method="POST" enctype="multipart/form-data" action="/dispatch">
+                <div class="formElement">
+                    <label for="fechaInicio">Seleccione la fecha de inicio del reporte</label>
+                    <input type="date" name="fechaInicio" min="2019-11-01" max="2024-12-31" value="<%= logstart %>"/>
+                </div>
+                <div class="formElement">
+                    <label for="horaInicio">Seleccione la hora de inicio</label>
+                    <input type="time" name="horaInicio" step="1" value="00:00:00"/>
+                </div>
+                <div class="formElement">
+                    <label for="fechaFin">Seleccione la fecha de fin del reporte</label>
+                    <input type="date" name="fechaFin" min="2019-11-01" max="2024-12-31" value="<%= logfinal %>"/>
+                </div>
+                <div class="formElement">
+                    <label for="horaFin">Seleccione la hora de fin</label>
+                    <input type="time" name="horaFin" step="1" value="23:59:59"/>
+                </div>
+                <div class="formElement">
+                    <label for="mina">Seleccione la mina</label>
+                    <select name="mina">
+                        <option value="Antamina">Antamina</option>
+                        <option value="Antamina">MiskiMayo</option>
+                    </select>
+                </div>
+                <div class="formElement">
+                    <label for="dispatch5">Ingrese el archivo de transacciones</label>
+                    <input type="file" name="dispatch5"/>
+                </div>
+   
+                <button type="submit" class="button">Obtener Reporte</button>
+            </form>
+            <a href="/"><div class="button">Volver al inicio</div></a>
+        </div>
+    </body>
+</html>

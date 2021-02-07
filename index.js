@@ -20,23 +20,23 @@ app.use(bodyParser.urlencoded({extended: false}));
 // view engine setup
 app.use(express.static(__dirname+'/public'));
 app.set('views', path.join(__dirname, 'views'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+//app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 
 app.use(dispatchRoute);
 app.use(provisionRoute);
 app.use(pageRoute);
 
 app.get('/', (req,res,next)=>{
-    return res.render('index.html');
+    return res.render('index');
 });
 
 app.use((error,req,res,next)=>{
-    res.status(500).render('error.html');
+    res.status(500).render('error');
 })
 
 app.use((req,res,next)=>{
-    res.render('notFound.html');
+    res.render('notFound');
 })
 
 

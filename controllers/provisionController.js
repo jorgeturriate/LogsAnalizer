@@ -2,7 +2,33 @@ const helpers= require('../helpers/provision');
 const fs= require('fs');
 
 exports.getProvisionPage= (req,res,next)=>{
-    return res.render('provision.html');
+
+    const date= new Date();
+
+    //Logica para pasar por default el inicio y fin del analisis
+    const dia= date.getDate();
+    const mes= date.getMonth();
+    const year= date.getFullYear();
+    let mesStart;
+    let finalDate;
+
+    if(mes==0 && dia<=8){
+        mesStart= "12";
+    }else if(mes!=0 && dia<=8){
+        mesStart=(mes-1<=8)?"0"+(mes):(mes);
+    }else {
+        mesStart= (mes<=8)?"0"+(mes+1):(mes+1);
+    }
+
+    const logdatestart= ((mes==0 && dia<=8)?year-1:year) + "-"+ mesStart +"-01";
+
+    finalDate= new Date((mes==0 && dia<=8)?year-1:year, parseInt(mesStart),0);
+    const logdatefinal= finalDate.getFullYear() + "-"+((finalDate.getMonth()<=8)?"0"+(finalDate.getMonth()+1):(finalDate.getMonth()+1))+"-"+finalDate.getDate();
+    
+    return res.render('provision',{
+        logstart: logdatestart,
+        logfinal: logdatefinal
+    });
 }
 
 exports.postProvisionPage= async (req,res,next)=>{

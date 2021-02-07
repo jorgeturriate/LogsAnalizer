@@ -19,6 +19,8 @@ const upload= multer({storage: storage});
 
 const dispatchController= require('../controllers/dispatchController');
 
+//Rutas para Dispatch 6
+
 router.get('/dispatch',dispatchController.getDispatchPage);
 
 router.post('/dispatch', 
@@ -27,5 +29,11 @@ router.post('/dispatch',
                 {name: 'starter', maxCount:1}
             ]), 
             dispatchController.postDispatchPage);
+
+// Rutas para Dispatch 5
+
+router.get('/dispatch5',dispatchController.getDispatch5Page);
+
+router.post('/dispatch5', upload.single('dispatch5'), dispatchController.postDispatch5Page);
 
 module.exports= router;

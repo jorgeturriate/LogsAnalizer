@@ -55,3 +55,27 @@ a {
     background-color: yellow;
     color: black;
 }
+
+#sugerencia {
+    border: 2px solid blue;
+    padding: 4px;
+}
+
+#sugerencia ol {
+    font-size: 15px;
+    text-align: left;
+}
+
+.language {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.language code {
+    font-family: Consolas,"courier new";
+    display: inline-block;
+    padding: 14px;
+    color: crimson;
+    background-color: #f1f1f1;
+    font-size: 90%;
+  }

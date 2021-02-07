@@ -1,10 +1,10 @@
 const fs = require('fs');
 const readline = require('readline');
 
-exports.generacionReporte= async (provisionlog, fechaInicio, fechaFin, horaInicio, horaFin, mina)=>{
+exports.generacionReporte= async (transacciones, fechaInicio, fechaFin, horaInicio, horaFin, mina)=>{
     
     //Path de ubicacion del reporte
-    const pathReporte= 'uploads/provision'+mina+'.csv';
+    const pathReporte= 'uploads/dispatch5'+mina+'.csv';
 
     const writeStream= fs.createWriteStream(pathReporte);
     let arrCases;
@@ -23,8 +23,8 @@ exports.generacionReporte= async (provisionlog, fechaInicio, fechaFin, horaInici
 
     console.log('antes de ejecutar el lector de lineas inicial');
 
-    //Leemos el log Provision y hacemos el filtrado para obtener en el array las caidas y running
-    arrCases= await leerLog(provisionlog, args, mina);
+    //Leemos el log starter y hacemos el filtrado para obtener en el array las caidas y running
+    arrCases= await leerLog(transacciones, args, mina);
 
     //Procesamos el array para obtener las caidas
     const {arrayProcesado, segundosTotales}= procesarArray(arrCases);

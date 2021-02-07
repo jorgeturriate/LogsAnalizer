@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Dispatch</title>
-        <link rel="stylesheet" href="css/analizador.css"/>
-        <link rel="icon" type="image/png" href="images/modular.png"/>
+        <title>Provision</title>
+        <link rel="stylesheet" href="/css/analizador.css"/>
+        <link rel="icon" type="image/png" href="/images/modular.png"/>
     </head>
     <body>
         <div class="container">
-            <h1>Analizador de Logs de Dispatch</h1>
+            <h1>Analizador de Logs de Provision</h1>
             <p>
-                Bienvenido al analizador de logs de Dispatch, por favor complete con los datos necesarios para realizar el reporte
+                Bienvenido al analizador de logs de Provision, por favor complete con los datos necesarios para realizar el reporte
             </p>
-            <form method="POST" enctype="multipart/form-data" action="/dispatch">
+            <form method="POST" enctype="multipart/form-data" action="/provision">
                 <div class="formElement">
                     <label for="fechaInicio">Seleccione la fecha de inicio del reporte</label>
-                    <input type="date" name="fechaInicio" min="2019-11-01" max="2022-12-31"/>
+                    <input type="date" name="fechaInicio" min="2019-11-01" max="2024-12-31" value="<%= logstart %>"/>  
                 </div>
                 <div class="formElement">
                     <label for="horaInicio">Seleccione la hora de inicio</label>
-                    <input type="time" name="horaInicio" step="1" />
+                    <input type="time" name="horaInicio" step="1" value="00:00:00"/>
                 </div>
                 <div class="formElement">
                     <label for="fechaFin">Seleccione la fecha de fin del reporte</label>
-                    <input type="date" name="fechaFin" min="2019-11-01" max="2022-12-31"/>
+                    <input type="date" name="fechaFin" min="2019-11-01" max="2024-12-31" value="<%= logfinal %>"/>
                 </div>
                 <div class="formElement">
                     <label for="horaFin">Seleccione la hora de fin</label>
-                    <input type="time" name="horaFin" step="1" />
+                    <input type="time" name="horaFin" step="1" value="23:59:59"/>
                 </div>
                 <div class="formElement">
                     <label for="mina">Seleccione la mina</label>
@@ -36,13 +36,9 @@
                     </select>
                 </div>
                 <div class="formElement">
-                    <label for="starter">Ingrese el log del Starter Service</label>
-                    <input type="file" name="starter"/>
+                    <label for="provisionr">Ingrese el log Intellimine Provision</label>
+                    <input type="file" name="provision"/>
                 </div>
-                <div class="formElement">
-                    <label for="dispatch">Ingrese el log del Dispatch Service</label>
-                    <input type="file" name="dispatch"/>
-                </div>    
                 <button type="submit" class="button">Obtener Reporte</button>
             </form>
             <a href="/"><div class="button">Volver al inicio</div></a>
